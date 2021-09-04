@@ -28,7 +28,7 @@ RUN yum -y -e1 -d1 install readline-devel \
                            libpqxx-devel \
                            gcc \
                            postgresql94 \
-                           postgresql-devel 
+                           postgresql-devel \
     && yum clean all
 
 ENV PATH=$PATH:/usr/pgsql-9.4/bin
