@@ -67,7 +67,7 @@ echo "Creating ${AIRFLOW_DIR}/etc/airflow/conf.dist/airflow.cfg ..."
 export AIRFLOW_HOME=/var/lib/airflow
 install -m 0755 -o root -g root -d "${AIRFLOW_HOME}"
 install -m 0755 -o root -g root -d /etc/airflow/conf/
-"${AIRFLOW_DIR}/bin/airflow" initdb
+"${AIRFLOW_DIR}/bin/airflow" db init
 install -m 0755 -o root -g root -d "${AIRFLOW_DIR}/etc/airflow/conf.dist/"
 install -m 0644 -o root -g root "/etc/airflow/conf/airflow.cfg" "${AIRFLOW_DIR}/etc/airflow/conf.dist/"
 
