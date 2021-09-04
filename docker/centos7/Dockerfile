@@ -50,6 +50,9 @@ RUN mkdir -p ${INSTALL_DIR}/${PARCEL_NAME} && \
 COPY get-pip.py /BUILD/get-pip.py
 RUN PYVER=$(echo $PYTHON_VERSION | awk -F. '{print $1"."$2}') && \
     ${INSTALL_DIR}/${PARCEL_NAME}/bin/python${PYVER} /BUILD/get-pip.py
+RUN yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+RUN yum -y install sqlite33
+ENV LD_LIBRARY_PATH "/usr/sqlite330/lib/"
 
 COPY docker/install_airflow.sh /BUILD/
 RUN bash -x /BUILD/install_airflow.sh
@@ -73,4 +76,3 @@ RUN cd ${INSTALL_DIR} && \
     sha1sum /BUILD/${PARCEL_NAME}-${PARCEL_DIST}.parcel | awk '{print $1}' >/BUILD/${PARCEL_NAME}-${PARCEL_DIST}.parcel.sha
 
 CMD /bin/bash
-
