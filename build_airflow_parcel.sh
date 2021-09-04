@@ -19,7 +19,6 @@ if [ -n "$DEBUG" ]; then set -x; fi
 ##### START CONFIG ###################################################
 
 ##### STOP CONFIG ####################################################
-PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin
 
 # Function to print the help screen.
 print_help() {
@@ -98,9 +97,9 @@ for FILE in meta/*json; do
 done
 
 echo "*** Validating parcel files ..."
-java -jar ../../cloudera/cm_ext/validator/target/validator.jar -a meta/alternatives.json
-java -jar ../../cloudera/cm_ext/validator/target/validator.jar -p meta/parcel.json
-java -jar ../../cloudera/cm_ext/validator/target/validator.jar -r meta/permissions.json
+java -jar validator.jar -a meta/alternatives.json
+java -jar validator.jar -p meta/parcel.json
+java -jar validator.jar -r meta/permissions.json
 
 if command -v wget; then
   GET="wget -c"
