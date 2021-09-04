@@ -8,23 +8,7 @@ PYMAJVER=$(echo "$PYTHON_VERSION" | awk -F. '{print $1}')
 
 PATH="${AIRFLOW_DIR}/bin:${PATH}"
 PIPOPTS=""
-#export SLUGIFY_USES_TEXT_UNIDECODE=no
-export AIRFLOW_GPL_UNIDECODE=yes
 
-echo "** Installing numpy."
-pip $PIPOPTS install numpy
-echo "** Installing setuptools."
-pip $PIPOPTS install -U setuptools
-echo "** Installing psycopg2-binary"
-pip $PIPOPTS install psycopg2-binary
-
-echo "*** Installing Airflow..."
-if [ "$PYMAJVER" -lt 3 ]; then
-  # Pandas >0.22.0 breaks Python 2.x support.
-  pip $PIPOPTS install pandas=="0.22.0"
-fi
-# Flask >1.0.3 breaks Airflow
-pip $PIPOPTS install Flask==1.0.3
 pip $PIPOPTS install apache-airflow=="${AIRFLOW_VERSION}"
 
 echo "*** Installing Airflow plugins..."
